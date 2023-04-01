@@ -1,0 +1,31 @@
+{% extends 'entrega_3/base.html' %}
+
+{% block title %} Productos {% endblock %}
+
+{% block titulo %} Listado de Productos: {% endblock %}
+
+{% block listado %}
+
+  <ul>
+    {% for producto in productos %}
+      <li>{{producto}}</li>
+    {% endfor %}
+  </ul>
+
+  <h2>Agregar nuevo producto:</h2>
+
+  <form method="post" action="{% url 'agregar-productos' %}">
+    {% csrf_token %}
+    <label for="nombre_producto">Nombre:</label>
+    <input type="text" name="nombre_producto" id="nombre_producto"><br><br>
+
+    <label for="descripcion">Descripcion:</label>
+    <input type="text" name="descripcion" id="descripcion"><br><br>
+
+    <label for="precio">Precio:</label>
+    <input type="text" name="precio" id="precio"><br><br>
+
+    <button type="submit">Guardar</button>
+  </form>
+
+{% endblock %}

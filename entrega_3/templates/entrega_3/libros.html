@@ -1,0 +1,31 @@
+{% extends 'entrega_3/base.html' %}
+
+{% block title %} Libros {% endblock %}
+
+{% block titulo %} Listado de Libros: {% endblock %}
+
+{% block listado %}
+
+  <ul>
+    {% for libro in libros %}
+      <li>{{libro}}</li>
+    {% endfor %}
+  </ul>
+
+  <h2>Agregar nuevo libro:</h2>
+
+  <form method="post" action="{% url 'agregar-libros' %}">
+    {% csrf_token %}
+    <label for="nombre_libro">Nombre:</label>
+    <input type="text" name="nombre_libro" id="nombre_libro"><br><br>
+
+    <label for="genero">Genero:</label>
+    <input type="text" name="genero" id="genero"><br><br>
+
+    <label for="cantidad_paginas">Cantidad de paginas:</label>
+    <input type="text" name="cantidad_paginas" id="cantidad_paginas"><br><br>
+
+    <button type="submit">Guardar</button>
+  </form>
+
+{% endblock %}

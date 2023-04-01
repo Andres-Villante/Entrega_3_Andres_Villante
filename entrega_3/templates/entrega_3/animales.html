@@ -1,0 +1,32 @@
+{% extends 'entrega_3/base.html' %}
+
+{% block title %} Animales {% endblock %}
+
+{% block titulo %} Listado de Animales: {% endblock %}
+
+{% block listado %}
+
+  <ul>
+    {% for animal in animales %}
+      <li>{{animal}}</li>
+    {% endfor %}
+  </ul>
+
+  <h2>Agregar nuevo animal:</h2>
+
+  <form method="post" action="{% url 'agregar-animales' %}">
+    {% csrf_token %}
+    <label for="nombre_animal">Nombre:</label>
+    <input type="text" name="nombre_animal" id="nombre_animal"><br><br>
+
+    <label for="altura">Altura: (cm)</label>
+    <input type="text" name="altura" id="altura"><br><br>
+
+    <label for="peso">Peso: (kg)</label>
+    <input type="text" name="peso" id="peso"><br><br>
+
+    <button type="submit">Guardar</button>
+  </form>
+
+{% endblock %}
+
