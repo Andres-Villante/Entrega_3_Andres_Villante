@@ -21,8 +21,9 @@ from entrega_3.views import( mostrar_mis_animales,
                     agregar_producto,
                     mostrar_mis_libros, 
                     agregar_libro, 
-                    BuscarAnimalView,
+                    AnimalBusqueda,
                     )
+
 
 
 
@@ -38,5 +39,5 @@ urlpatterns = [
     path('mis-libros/', mostrar_mis_libros, name="mis-libros"),
     path('agregar-libros/', agregar_libro, name='agregar-libros'),
 
-    path('buscar-animal/', BuscarAnimalView.as_view(), name='buscar-animal'),
+    path('lista-animales/', AnimalBusqueda.as_view(), name='lista-animales')
 ]

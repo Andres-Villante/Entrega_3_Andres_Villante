@@ -19,5 +19,6 @@ class LibroForm(forms.ModelForm):
         model = Libro
         fields = ['nombre_libro', 'genero', 'cantidad_paginas']
 
-class AnimalBusquedaForm(forms.Form):
-    nombre_animal = forms.CharField(max_length=100)
+
+class BuscarAnimalForm(forms.Form):
+    criterio_nombre = forms.CharField(max_length=100)

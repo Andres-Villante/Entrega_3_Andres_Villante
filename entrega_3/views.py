@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from entrega_3.models import Animal, Producto, Libro
-from entrega_3.forms import AnimalForm, ProductoForm, LibroForm, AnimalBusquedaForm
+from entrega_3.forms import AnimalForm, ProductoForm, LibroForm, BuscarAnimalForm
 from django.views.generic import ListView
 
 
@@ -49,29 +49,17 @@ def agregar_libro(request):
     return render(request, 'entrega_3/agregar_libro.html', {'form': form})
 
 
-
-
-
-
-
-def buscar_animal(request):
-    form = AnimalBusquedaForm(request.GET)
-    if form.is_valid():
-        query = form.cleaned_data['nombre_animal']
-        results = Animal.objects.filter(nombre_animal__icontains=query)
-        return render(request, 'buscar_resultados.html', {'results': results, 'query': query})
-    else:
-        return render(request, 'buscar_resultados.html', {'results': results, 'query': query})
-
-
-class BuscarAnimalView(ListView):
+class AnimalBusqueda(ListView):
     model = Animal
-    template_name = "buscar_resultados.html"
-    context_object_name = "results"
-    paginate_by = 10
+    context_object_name = "animales"
 
     def get_queryset(self):
-        query = self.request.GET.get("q")
-        if query:
-            return Animal.objects.filter(nombre_animal__icontains=query)
+        f = BuscarAnimalForm(self.request.GET)
+        if f.is_valid():
+            return Animal.objects.filter(nombre_animal__icontains=f.cleaned_data["criterio_nombre"])
         return Animal.objects.none()
+
+
+
+
+

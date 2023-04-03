@@ -1,0 +1,29 @@
+{% extends 'entrega_3/base.html' %}
+
+{% block title %} Buscador {% endblock %}
+
+{% block titulo %} Buscador de Animales: {% endblock %}
+
+{% block listado %}
+
+
+
+<ul>
+    {% for animal in animales %}
+      <li>{{animal}}</li>
+    {% endfor %}
+</ul>
+
+
+<form>
+  <p>
+      <label for="criterio_nombre">Nombre del animal:</label>
+      <input type="text" name="criterio_nombre" maxlength="100" required="" id="criterio_nombre">
+  </p>
+  <p>
+    <input type="submit" value="Buscar">
+  </p>
+</form>
+
+{% endblock %}
+
